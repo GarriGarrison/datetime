@@ -1,7 +1,7 @@
 {
-  "name": "datetime",
+  "name": "@garrigarrison/datetime",
   "private": false,
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "converter DateTime into timestamp and revert",
   "license": "MIT",
   "repository": {
@@ -10,8 +10,8 @@
   },
   "author": {
     "name": "Garrison",
-    "email": "ofigate@gmail.com",
-    "url": "https://github.com/Smoren"
+    "email": "garrisonford@yandex.ru",
+    "url": "https://github.com/GarriGarrison"
   },
   "homepage": "https://github.com/GarriGarrison/datetime#readme",
   "bugs": {
