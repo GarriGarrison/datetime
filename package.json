@@ -1,0 +1,52 @@
+{
+  "name": "datetime",
+  "private": false,
+  "version": "0.0.1",
+  "description": "converter DateTime into timestamp and revert",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GarriGarrison/datetime.git"
+  },
+  "author": {
+    "name": "Garrison",
+    "email": "ofigate@gmail.com",
+    "url": "https://github.com/Smoren"
+  },
+  "homepage": "https://github.com/GarriGarrison/datetime#readme",
+  "bugs": {
+    "url": "https://github.com/GarriGarrison/datetime/issues"
+  },
+  "main": "index.js",
+  "module": "./es/index.js",
+  "types": "./lib/index.d.ts",
+  "jsnext:main": "./es/index.js",
+  "scripts": {
+    "clean": "rm -rf dist",
+    "build": "npm run build:commonjs && npm run build:es",
+    "build:commonjs": "rimraf lib && tsc --downlevelIteration --target es5 --outDir lib --module commonjs --declaration",
+    "build:es": "rimraf es && tsc --target es6 --outDir es --module es6",
+    "test": "jest --coverage",
+    "jest": "jest",
+    "format": "ts-scripts format",
+    "lint": "ts-scripts lint",
+    "prepublishOnly": "npm run build"
+  },
+  "files": [
+    "dist",
+    "es",
+    "lib",
+    "src",
+    "tests/tools"
+  ],
+  "keywords": [
+    "date",
+    "time",
+    "datetime"
+  ],
+  "devDependencies": {
+    "rimraf": "^5.0.5",
+    "typescript": "^5.2.2"
+  },
+  "sideEffects": false
+}
