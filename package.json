@@ -24,20 +24,14 @@
   "scripts": {
     "clean": "rm -rf dist",
     "build": "npm run build:commonjs && npm run build:es",
-    "build:commonjs": "rimraf lib && tsc --downlevelIteration --target es5 --outDir lib --module commonjs --declaration",
-    "build:es": "rimraf es && tsc --target es6 --outDir es --module es6",
+    "build:commonjs": "rimraf lib && tsc --downlevelIteration --target es5 --outDir dist/lib --module commonjs --declaration",
+    "build:es": "rimraf es && tsc --target es6 --outDir dist/es --module es6",
     "test": "jest --coverage",
     "jest": "jest",
-    "format": "ts-scripts format",
-    "lint": "ts-scripts lint",
     "prepublishOnly": "npm run build"
   },
   "files": [
-    "dist",
-    "es",
-    "lib",
-    "src",
-    "tests/tools"
+    "dist"
   ],
   "keywords": [
     "date",
