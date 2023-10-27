@@ -26,8 +26,8 @@
     "build": "npm run build:commonjs && npm run build:es",
     "build:commonjs": "rimraf lib && tsc --downlevelIteration --target es5 --outDir dist/lib --module commonjs --declaration",
     "build:es": "rimraf es && tsc --target es6 --outDir dist/es --module es6",
-    "test": "jest --coverage",
-    "jest": "jest",
+    "test": "vitest",
+    "coverage": "vitest run --coverage",
     "prepublishOnly": "npm run build"
   },
   "files": [
@@ -50,7 +50,8 @@
     "prettier": "^3.0.3",
     "rimraf": "^5.0.5",
     "types-spring": "^2.0.1",
-    "typescript": "^5.2.2"
+    "typescript": "^5.2.2",
+    "vitest": "^0.34.6"
   },
   "sideEffects": false
 }

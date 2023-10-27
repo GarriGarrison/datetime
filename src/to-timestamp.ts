@@ -1,15 +1,25 @@
 const convertDateTime = (datetime: string, separator: string): number | undefined => {
   if (datetime.includes(separator)) {
     const [date, time] = datetime.split(separator);
-
+    const timeParts = time?.split(':');
     const dateParts = date.includes('-') ? date?.split('-') : date?.split('.');
-    const timeParts = time.split(':');
 
-    if (dateParts && timeParts) {
+    let year = 0;
+    let day = 0;
+
+    if (Number(dateParts[0]) > 31) {
+      year = Number(dateParts[0]);
+      day = Number(dateParts[2]);
+    } else {
+      year = Number(dateParts[2]);
+      day = Number(dateParts[0]);
+    }
+
+    if (timeParts && dateParts && year && day) {
       return new Date(
-        Number(dateParts[0]),
+        year,
         Number(dateParts[1]) - 1,
-        Number(dateParts[2]),
+        day,
         Number(timeParts[0]),
         Number(timeParts[1]),
         Number(timeParts[2]) || 0,
@@ -20,8 +30,8 @@ const convertDateTime = (datetime: string, separator: string): number | undefine
   return undefined;
 };
 
-export const toTimestamp = (value: string | number, deleteMS = false): number | null => {
-  if ((typeof value === 'string' && value === '') || (typeof value === 'number' && value < 0)) {
+export const toTimestamp = (value: string, deleteMS = false): number | null => {
+  if (value === '') {
     return null;
   }
 
@@ -53,7 +63,7 @@ export const toTimestamp = (value: string | number, deleteMS = false): number | 
     }
   }
 
-  if (!result || Number.isNaN(result)) {
+  if (!result || Number.isNaN(result) || result < 0) {
     return null;
   }
 
