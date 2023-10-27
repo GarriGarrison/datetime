@@ -14,6 +14,7 @@ on:
 
 jobs:
   build:
+    name: Build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -22,19 +23,17 @@ jobs:
           node-version: 16
       - run: npm ci
       - run: npm test
-      - name: Upload coverage report to Coveralls
-        uses: coverallsapp/github-action@master
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          parallel: true
+  #     - name: Upload coverage report to Coveralls
+  #       uses: coverallsapp/github-action@master
+  #       with:
+  #         github-token: ${{ secrets.GITHUB_TOKEN }}
 
-  coveralls:
-    needs: build
-    runs-on: ubuntu-latest
+  # coveralls:
+  #   needs: build
+  #   runs-on: ubuntu-latest
 
-    steps:
-      - name: Coveralls finished
-        uses: coverallsapp/github-action@main
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          parallel-finished: true
+  #   steps:
+  #     - name: Coveralls
+  #       uses: coverallsapp/github-action@main
+  #       with:
+  #         github-token: ${{ secrets.GITHUB_TOKEN }}

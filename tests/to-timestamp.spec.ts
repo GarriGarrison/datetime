@@ -53,6 +53,10 @@ describe('toTimestamp', () => {
   /**
    * Negative testing
    */
+  it('negative empty string', () => {
+    expect(toTimestamp('')).toBe(null);
+  });
+
   it('negative format DateTime YYYY/MM/DDThh:mm', () => {
     expect(toTimestamp(`1970/01/01T${TEST_TIME}`)).toBe(null);
   });
