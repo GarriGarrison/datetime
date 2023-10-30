@@ -28,7 +28,8 @@
     "build:es": "rimraf es && tsc --target es6 --outDir dist/es --module es6",
     "test": "vitest",
     "test-coverage": "vitest --coverage",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "prepare": "husky install"
   },
   "files": [
     "dist"
@@ -48,6 +49,7 @@
     "eslint-import-resolver-typescript": "^3.6.1",
     "eslint-plugin-import": "^2.29.0",
     "eslint-plugin-prettier": "^5.0.1",
+    "husky": "^8.0.3",
     "prettier": "^3.0.3",
     "rimraf": "^5.0.5",
     "types-spring": "^2.0.1",
