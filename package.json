@@ -26,7 +26,7 @@
     "build": "npm run clean && npm run build:commonjs && npm run build:es",
     "build:commonjs": "rimraf lib && tsc --downlevelIteration --target es5 --outDir dist/lib --module commonjs --declaration",
     "build:es": "rimraf es && tsc --target es6 --outDir dist/es --module es6",
-    "test": "vitest",
+    "test": "vitest run --coverage.enabled --coverage.lines=80",
     "test-coverage": "vitest --coverage",
     "prepublishOnly": "npm run build",
     "prepare": "husky install"
