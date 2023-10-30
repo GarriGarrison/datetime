@@ -1,7 +1,7 @@
 {
   "name": "@garrigarrison/datetime",
   "private": false,
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "converter DateTime into timestamp and revert",
   "license": "MIT",
   "repository": {
@@ -23,7 +23,7 @@
   "jsnext:main": "./es/index.js",
   "scripts": {
     "clean": "rimraf dist",
-    "build": "clean && npm run build:commonjs && npm run build:es",
+    "build": "npm run clean && npm run build:commonjs && npm run build:es",
     "build:commonjs": "rimraf lib && tsc --downlevelIteration --target es5 --outDir dist/lib --module commonjs --declaration",
     "build:es": "rimraf es && tsc --target es6 --outDir dist/es --module es6",
     "test": "vitest",
