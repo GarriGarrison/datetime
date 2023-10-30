@@ -22,7 +22,7 @@
   "types": "./lib/index.d.ts",
   "jsnext:main": "./es/index.js",
   "scripts": {
-    "clean": "rm -rf dist",
+    "clean": "rimraf dist",
     "build": "npm run build:commonjs && npm run build:es",
     "build:commonjs": "rimraf lib && tsc --downlevelIteration --target es5 --outDir dist/lib --module commonjs --declaration",
     "build:es": "rimraf es && tsc --target es6 --outDir dist/es --module es6",
