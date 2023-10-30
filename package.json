@@ -1,8 +1,9 @@
 {
   "name": "@garrigarrison/datetime",
   "private": false,
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "converter DateTime into timestamp and revert",
+  "type": "module",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -17,15 +18,21 @@
   "bugs": {
     "url": "https://github.com/GarriGarrison/datetime/issues"
   },
-  "main": "index.js",
-  "module": "./es/index.js",
-  "types": "./lib/index.d.ts",
-  "jsnext:main": "./es/index.js",
+  "main": "./dist/datetime.umd.cjs",
+  "module": "./dist/datetime.js",
+  "types": "./dist/index.d.ts",
+  "jsnext:main": "./dist/datetime.js",
+  "exports": {
+    ".": {
+      "import": "./dist/datetime.js",
+      "require": "./dist/datetime.umd.cjs"
+    }
+  },
   "scripts": {
     "clean": "rimraf dist",
-    "build": "npm run clean && npm run build:commonjs && npm run build:es",
-    "build:commonjs": "rimraf lib && tsc --downlevelIteration --target es5 --outDir dist/lib --module commonjs --declaration",
-    "build:es": "rimraf es && tsc --target es6 --outDir dist/es --module es6",
+    "dev": "vite",
+    "build": "npm run clean && tsc && vite build",
+    "preview": "vite preview",
     "test": "vitest run --coverage.enabled --coverage.lines=80",
     "test-coverage": "vitest --coverage",
     "prepublishOnly": "npm run build",
@@ -41,6 +48,7 @@
   ],
   "devDependencies": {
     "@total-typescript/ts-reset": "^0.5.1",
+    "@types/node": "^20.8.9",
     "@typescript-eslint/eslint-plugin": "^6.9.0",
     "@typescript-eslint/parser": "^6.9.0",
     "@vitest/coverage-v8": "^0.34.6",
@@ -53,6 +61,8 @@
     "prettier": "^3.0.3",
     "rimraf": "^5.0.5",
     "types-spring": "^2.0.1",
+    "vite": "^4.5.0",
+    "vite-plugin-dts": "^3.6.3",
     "typescript": "^5.2.2",
     "vitest": "^0.34.6"
   },
