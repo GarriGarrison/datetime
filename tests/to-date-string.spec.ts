@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { toDateString } from '../src';
+import { toDateString, toISODateString } from '../src';
 
 describe('toDateString', () => {
   /**
@@ -21,11 +21,11 @@ describe('toDateString', () => {
    * Negative testing
    */
   it('negative -> input NaN', () => {
-    expect(toDateString(NaN)).toBe(undefined);
+    expect(toDateString(NaN)).toBe(null);
   });
 
   it('negative -> input Infinity', () => {
-    expect(toDateString(Infinity)).toBe(undefined);
+    expect(toDateString(Infinity)).toBe(null);
   });
 });
 
@@ -34,25 +34,25 @@ describe('toISODateString', () => {
    * Positive testing
    */
   it('positive -> input 0', () => {
-    expect(toDateString(0)).toBe('1970-01-01');
+    expect(toISODateString(0)).toBe('1970-01-01');
   });
 
   it('positive -> input positive number', () => {
-    expect(toDateString(-3155682617000)).toBe('1870-01-01');
+    expect(toISODateString(-3155682617000)).toBe('1870-01-01');
   });
 
   it('positive -> input negative number', () => {
-    expect(toDateString(946674000000)).toBe('2000-01-01');
+    expect(toISODateString(946674000000)).toBe('2000-01-01');
   });
 
   /**
    * Negative testing
    */
   it('negative -> input NaN', () => {
-    expect(toDateString(NaN)).toBe(undefined);
+    expect(toISODateString(NaN)).toBe(null);
   });
 
   it('negative -> input Infinity', () => {
-    expect(toDateString(Infinity)).toBe(undefined);
+    expect(toISODateString(Infinity)).toBe(null);
   });
 });

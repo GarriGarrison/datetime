@@ -1,11 +1,11 @@
 /**
  * @returns 'DD.MM.YYYY'
  */
-export const toDateString = (value: number): string | undefined => {
+export const toDateString = (value: number): string | null => {
   const date = new Date(value);
 
   if (!(date instanceof Date && !isNaN(date.getTime()))) {
-    return undefined;
+    return null;
   }
 
   const options: Intl.DateTimeFormatOptions = {
@@ -20,11 +20,11 @@ export const toDateString = (value: number): string | undefined => {
 /**
  * @returns 'YYYY-MM-DD'
  */
-export const toISODateString = (value: number): string | undefined => {
+export const toISODateString = (value: number): string | null => {
   const date = new Date(value);
 
   if (!(date instanceof Date && !isNaN(date.getTime()))) {
-    return undefined;
+    return null;
   }
 
   const options: Intl.DateTimeFormatOptions = {
