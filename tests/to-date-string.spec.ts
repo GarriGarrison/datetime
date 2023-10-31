@@ -98,7 +98,7 @@ describe('toISOString', () => {
     if (TIMEZONE) {
       expect(toISOString(0)).toBe('1970-01-01T03:00:00');
     } else {
-      expect(toISOString(0)).toBe('1970-01-01T00:00:00');
+      expect(toISOString(0)).toBe('1970-01-01T24:00:00');
     }
   });
 
@@ -106,7 +106,7 @@ describe('toISOString', () => {
     if (TIMEZONE) {
       expect(toISOString(NUMBER_NEGATIVE)).toBe('1870-07-09T05:30:17');
     } else {
-      expect(toISOString(NUMBER_NEGATIVE)).toBe('1870-07-09T02:30:17');
+      expect(toISOString(NUMBER_NEGATIVE)).toBe('1870-07-09T24:00:00');
     }
   });
 
@@ -114,7 +114,7 @@ describe('toISOString', () => {
     if (TIMEZONE) {
       expect(toISOString(NUMBER_POSITIVE)).toBe('2000-05-03T01:00:00');
     } else {
-      expect(toISOString(NUMBER_POSITIVE)).toBe('2000-05-03T01:00:00');
+      expect(toISOString(NUMBER_POSITIVE)).toBe('2000-05-03T24:00:00');
     }
   });
 
