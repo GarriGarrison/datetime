@@ -20,17 +20,21 @@ export const toDateString = (value: number): string | undefined => {
 /**
  * @returns 'YYYY-MM-DD'
  */
-// export const toISODateString = (value: number): string => {
-//   const date = new Date(value);
+export const toISODateString = (value: number): string | undefined => {
+  const date = new Date(value);
 
-//   const options: Intl.DateTimeFormatOptions = {
-//     year: 'numeric',
-//     month: '2-digit',
-//     day: '2-digit',
-//   };
+  if (!(date instanceof Date && !isNaN(date.getTime()))) {
+    return undefined;
+  }
 
-//   return Intl.DateTimeFormat('en-ca', options).format(date);
-// };
+  const options: Intl.DateTimeFormatOptions = {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+  };
+
+  return Intl.DateTimeFormat('en-ca', options).format(date);
+};
 
 // /**
 //  * @returns 'DD mouth YYYY'
