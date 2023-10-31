@@ -55,31 +55,35 @@ export const toDateLongString = (value: number): string | null => {
   return Intl.DateTimeFormat('ru', options).format(date);
 };
 
-// /**
-//  * @returns 'YYYY-MM-DDThh:mm:ss' or 'YYYY-MM-DDThh:mm'
-//  */
-// export const toISOString = (value: number, withSeconds: boolean = true): string => {
-//   const date = new Date(value);
+/**
+ * @returns 'YYYY-MM-DDThh:mm:ss' or 'YYYY-MM-DDThh:mm'
+ */
+export const toISOString = (value: number, withSeconds: boolean = true): string | null => {
+  const date = new Date(value);
 
-//   const dateOptions: Intl.DateTimeFormatOptions = {
-//     year: 'numeric',
-//     month: 'numeric',
-//     day: 'numeric',
-//   };
+  if (!(date instanceof Date && !isNaN(date.getTime()))) {
+    return null;
+  }
 
-//   const formattedDate = new Intl.DateTimeFormat('en-ca', dateOptions).format(date);
+  const dateOptions: Intl.DateTimeFormatOptions = {
+    year: 'numeric',
+    month: 'numeric',
+    day: 'numeric',
+  };
 
-//   const timeOptions: Intl.DateTimeFormatOptions = {
-//     hour: 'numeric',
-//     minute: 'numeric',
-//     second: withSeconds ? 'numeric' : undefined,
-//     hourCycle: 'h24',
-//   };
+  const formattedDate = new Intl.DateTimeFormat('en-ca', dateOptions).format(date);
 
-//   const formattedTime = new Intl.DateTimeFormat('en-ca', timeOptions).format(date);
+  const timeOptions: Intl.DateTimeFormatOptions = {
+    hour: 'numeric',
+    minute: 'numeric',
+    second: withSeconds ? 'numeric' : undefined,
+    hourCycle: 'h24',
+  };
 
-//   return `${formattedDate}T${formattedTime}`;
-// };
+  const formattedTime = new Intl.DateTimeFormat('en-ca', timeOptions).format(date);
+
+  return `${formattedDate}T${formattedTime}`;
+};
 
 // /**
 //  * @returns 'DD.MM.YYYY hh:mm:ss' or 'DD.MM.YYYY hh:mm'
