@@ -4,7 +4,7 @@ import { toDateString, toISODateString, toDateLongString } from '../src';
 const TIMEZONE = new Date().getTimezoneOffset() * 60 * 1000;
 
 const NUMBER_POSITIVE = 957312000000 + TIMEZONE;
-const NUMBER_NEGATIVE = -3139344000000 + TIMEZONE;
+const NUMBER_NEGATIVE = -3139344000000 - TIMEZONE;
 
 describe('toDateString', () => {
   /**
@@ -15,7 +15,7 @@ describe('toDateString', () => {
   });
 
   it('positive -> input negative number', () => {
-    expect(toDateString(NUMBER_NEGATIVE)).toBe('08.07.1870');
+    expect(toDateString(NUMBER_NEGATIVE)).toBe('09.07.1870');
   });
 
   it('positive -> input positive number', () => {
@@ -43,7 +43,7 @@ describe('toISODateString', () => {
   });
 
   it('positive -> input negative number', () => {
-    expect(toISODateString(NUMBER_NEGATIVE)).toBe('1870-07-08');
+    expect(toISODateString(NUMBER_NEGATIVE)).toBe('1870-07-09');
   });
 
   it('positive -> input positive number', () => {
@@ -71,7 +71,7 @@ describe('toDateLongString', () => {
   });
 
   it('positive -> input negative number', () => {
-    expect(toDateLongString(NUMBER_NEGATIVE)).toBe('8 июля 1870 г.');
+    expect(toDateLongString(NUMBER_NEGATIVE)).toBe('9 июля 1870 г.');
   });
 
   it('positive -> input positive number', () => {
