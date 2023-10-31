@@ -37,7 +37,7 @@ export const toISODateString = (value: number): string | null => {
 };
 
 /**
- * @returns 'DD mouth YYYY'
+ * @returns 'DD month YYYY'
  */
 export const toDateLongString = (value: number): string | null => {
   const date = new Date(value);
