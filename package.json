@@ -35,6 +35,7 @@
     "preview": "vite preview",
     "test": "vitest run --coverage.enabled --coverage.lines=80",
     "test-coverage": "vitest --coverage",
+    "jest": "vitest",
     "prepublishOnly": "npm run build",
     "prepare": "husky install"
   },
