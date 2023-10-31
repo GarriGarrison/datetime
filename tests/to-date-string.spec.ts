@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { toDateString, toISODateString, toDateLongString, toISOString } from '../src';
+import { toDateString, toISODateString, toDateLongString, toISOString, toDateTimeString } from '../src';
 
 const TIMEZONE = new Date().getTimezoneOffset() * 60 * 1000;
 
@@ -67,15 +67,15 @@ describe('toDateLongString', () => {
    * Positive testing
    */
   it('positive -> input 0', () => {
-    expect(toDateLongString(0)).toBe('1 января 1970 г.');
+    expect(toDateLongString(0)).toBe('01 января 1970 г.');
   });
 
   it('positive -> input negative number', () => {
-    expect(toDateLongString(NUMBER_NEGATIVE)).toBe('9 июля 1870 г.');
+    expect(toDateLongString(NUMBER_NEGATIVE)).toBe('09 июля 1870 г.');
   });
 
   it('positive -> input positive number', () => {
-    expect(toDateLongString(NUMBER_POSITIVE)).toBe('3 мая 2000 г.');
+    expect(toDateLongString(NUMBER_POSITIVE)).toBe('03 мая 2000 г.');
   });
 
   /**
@@ -99,6 +99,14 @@ describe('toISOString', () => {
       expect(toISOString(0)).toBe('1970-01-01T03:00:00');
     } else {
       expect(toISOString(0)).toBe('1970-01-01T24:00:00');
+    }
+  });
+
+  it('positive -> input 0, withSeconds = false', () => {
+    if (TIMEZONE) {
+      expect(toISOString(0, false)).toBe('1970-01-01T03:00');
+    } else {
+      expect(toISOString(0, false)).toBe('1970-01-01T24:00');
     }
   });
 
@@ -127,5 +135,53 @@ describe('toISOString', () => {
 
   it('negative -> input Infinity', () => {
     expect(toISOString(Infinity)).toBe(null);
+  });
+});
+
+describe('toDateTimeString', () => {
+  /**
+   * Positive testing
+   */
+  it('positive -> input 0', () => {
+    if (TIMEZONE) {
+      expect(toDateTimeString(0)).toBe('01.01.1970 03:00:00');
+    } else {
+      expect(toDateTimeString(0)).toBe('01.01.1970 24:00:00');
+    }
+  });
+
+  it('positive -> input 0, withSeconds = false', () => {
+    if (TIMEZONE) {
+      expect(toDateTimeString(0, false)).toBe('01.01.1970 03:00');
+    } else {
+      expect(toDateTimeString(0, false)).toBe('01.01.1970 24:00');
+    }
+  });
+
+  it('positive -> input negative number', () => {
+    if (TIMEZONE) {
+      expect(toDateTimeString(NUMBER_NEGATIVE)).toBe('09.07.1870 05:30:17');
+    } else {
+      expect(toDateTimeString(NUMBER_NEGATIVE)).toBe('09.07.1870 24:00:00');
+    }
+  });
+
+  it('positive -> input positive number', () => {
+    if (TIMEZONE) {
+      expect(toDateTimeString(NUMBER_POSITIVE)).toBe('03.05.2000 01:00:00');
+    } else {
+      expect(toDateTimeString(NUMBER_POSITIVE)).toBe('03.05.2000 24:00:00');
+    }
+  });
+
+  /**
+   * Negative testing
+   */
+  it('negative -> input NaN', () => {
+    expect(toDateTimeString(NaN)).toBe(null);
+  });
+
+  it('negative -> input Infinity', () => {
+    expect(toDateTimeString(Infinity)).toBe(null);
   });
 });

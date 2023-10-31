@@ -49,7 +49,7 @@ export const toDateLongString = (value: number): string | null => {
   const options: Intl.DateTimeFormatOptions = {
     year: 'numeric',
     month: 'long',
-    day: 'numeric',
+    day: '2-digit',
   };
 
   return Intl.DateTimeFormat('ru', options).format(date);
@@ -67,49 +67,61 @@ export const toISOString = (value: number, withSeconds: boolean = true): string 
 
   const dateOptions: Intl.DateTimeFormatOptions = {
     year: 'numeric',
-    month: 'numeric',
-    day: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
   };
 
   const formattedDate = new Intl.DateTimeFormat('en-ca', dateOptions).format(date);
 
   const timeOptions: Intl.DateTimeFormatOptions = {
-    hour: 'numeric',
-    minute: 'numeric',
-    second: withSeconds ? 'numeric' : undefined,
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
     hourCycle: 'h24',
   };
+
+  if (!withSeconds) {
+    delete timeOptions.second;
+  }
 
   const formattedTime = new Intl.DateTimeFormat('en-ca', timeOptions).format(date);
 
   return `${formattedDate}T${formattedTime}`;
 };
 
-// /**
-//  * @returns 'DD.MM.YYYY hh:mm:ss' or 'DD.MM.YYYY hh:mm'
-//  */
-// export const toDateTimeString = (value: number, withSeconds: boolean = true): string => {
-//   const date = new Date(value);
+/**
+ * @returns 'DD.MM.YYYY hh:mm:ss' or 'DD.MM.YYYY hh:mm'
+ */
+export const toDateTimeString = (value: number, withSeconds: boolean = true): string | null => {
+  const date = new Date(value);
 
-//   const dateOptions: Intl.DateTimeFormatOptions = {
-//     year: 'numeric',
-//     month: 'numeric',
-//     day: 'numeric',
-//   };
+  if (!(date instanceof Date && !isNaN(date.getTime()))) {
+    return null;
+  }
 
-//   const formattedDate = new Intl.DateTimeFormat('ru', dateOptions).format(date);
+  const dateOptions: Intl.DateTimeFormatOptions = {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+  };
 
-//   const timeOptions: Intl.DateTimeFormatOptions = {
-//     hour: 'numeric',
-//     minute: 'numeric',
-//     second: withSeconds ? 'numeric' : undefined,
-//     hourCycle: 'h24',
-//   };
+  const formattedDate = new Intl.DateTimeFormat('ru', dateOptions).format(date);
 
-//   const formattedTime = new Intl.DateTimeFormat('ru', timeOptions).format(date);
+  const timeOptions: Intl.DateTimeFormatOptions = {
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    hourCycle: 'h24',
+  };
 
-//   return `${formattedDate} ${formattedTime}`;
-// };
+  if (!withSeconds) {
+    delete timeOptions.second;
+  }
+
+  const formattedTime = new Intl.DateTimeFormat('ru', timeOptions).format(date);
+
+  return `${formattedDate} ${formattedTime}`;
+};
 
 // /**
 //  * @returns 'hh:mm:ss' or 'hh:mm'
