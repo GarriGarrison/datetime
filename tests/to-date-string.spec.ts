@@ -1,6 +1,11 @@
 import { describe, expect, it } from 'vitest';
 import { toDateString, toISODateString } from '../src';
 
+const TIMEZONE = new Date().getTimezoneOffset() * 60 * 1000;
+
+const NUMBER_POSITIVE = 946684800000 + TIMEZONE;
+const NUMBER_NEGATIVE = -3155671817000 + TIMEZONE;
+
 describe('toDateString', () => {
   /**
    * Positive testing
@@ -9,12 +14,12 @@ describe('toDateString', () => {
     expect(toDateString(0)).toBe('01.01.1970');
   });
 
-  it('positive -> input positive number', () => {
-    expect(toDateString(-3155682617000)).toBe('01.01.1870');
+  it('positive -> input negative number', () => {
+    expect(toDateString(NUMBER_NEGATIVE)).toBe('01.01.1870');
   });
 
-  it('positive -> input negative number', () => {
-    expect(toDateString(946674000000)).toBe('01.01.2000');
+  it('positive -> input positive number', () => {
+    expect(toDateString(NUMBER_POSITIVE)).toBe('01.01.2000');
   });
 
   /**
@@ -37,12 +42,12 @@ describe('toISODateString', () => {
     expect(toISODateString(0)).toBe('1970-01-01');
   });
 
-  it('positive -> input positive number', () => {
-    expect(toISODateString(-3155682617000)).toBe('1870-01-01');
+  it('positive -> input negative number', () => {
+    expect(toISODateString(NUMBER_NEGATIVE)).toBe('1870-01-01');
   });
 
-  it('positive -> input negative number', () => {
-    expect(toISODateString(946674000000)).toBe('2000-01-01');
+  it('positive -> input positive number', () => {
+    expect(toISODateString(NUMBER_POSITIVE)).toBe('2000-01-01');
   });
 
   /**
