@@ -36,20 +36,24 @@ export const toISODateString = (value: number): string | null => {
   return Intl.DateTimeFormat('en-ca', options).format(date);
 };
 
-// /**
-//  * @returns 'DD mouth YYYY'
-//  */
-// export const toDateLongString = (value: number): string => {
-//   const date = new Date(value);
+/**
+ * @returns 'DD mouth YYYY'
+ */
+export const toDateLongString = (value: number): string | null => {
+  const date = new Date(value);
 
-//   const options: Intl.DateTimeFormatOptions = {
-//     year: 'numeric',
-//     month: 'long',
-//     day: 'numeric',
-//   };
+  if (!(date instanceof Date && !isNaN(date.getTime()))) {
+    return null;
+  }
 
-//   return Intl.DateTimeFormat('ru', options).format(date);
-// };
+  const options: Intl.DateTimeFormatOptions = {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  };
+
+  return Intl.DateTimeFormat('ru', options).format(date);
+};
 
 // /**
 //  * @returns 'YYYY-MM-DDThh:mm:ss' or 'YYYY-MM-DDThh:mm'

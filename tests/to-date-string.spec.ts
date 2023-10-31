@@ -1,10 +1,10 @@
 import { describe, expect, it } from 'vitest';
-import { toDateString, toISODateString } from '../src';
+import { toDateString, toISODateString, toDateLongString } from '../src';
 
 const TIMEZONE = new Date().getTimezoneOffset() * 60 * 1000;
 
-const NUMBER_POSITIVE = 946684800000 + TIMEZONE;
-const NUMBER_NEGATIVE = -3155671817000 + TIMEZONE;
+const NUMBER_POSITIVE = 957312000000 + TIMEZONE;
+const NUMBER_NEGATIVE = -3139344000000 + TIMEZONE;
 
 describe('toDateString', () => {
   /**
@@ -15,11 +15,11 @@ describe('toDateString', () => {
   });
 
   it('positive -> input negative number', () => {
-    expect(toDateString(NUMBER_NEGATIVE)).toBe('01.01.1870');
+    expect(toDateString(NUMBER_NEGATIVE)).toBe('08.07.1870');
   });
 
   it('positive -> input positive number', () => {
-    expect(toDateString(NUMBER_POSITIVE)).toBe('01.01.2000');
+    expect(toDateString(NUMBER_POSITIVE)).toBe('03.05.2000');
   });
 
   /**
@@ -43,11 +43,11 @@ describe('toISODateString', () => {
   });
 
   it('positive -> input negative number', () => {
-    expect(toISODateString(NUMBER_NEGATIVE)).toBe('1870-01-01');
+    expect(toISODateString(NUMBER_NEGATIVE)).toBe('1870-07-08');
   });
 
   it('positive -> input positive number', () => {
-    expect(toISODateString(NUMBER_POSITIVE)).toBe('2000-01-01');
+    expect(toISODateString(NUMBER_POSITIVE)).toBe('2000-05-03');
   });
 
   /**
@@ -59,5 +59,33 @@ describe('toISODateString', () => {
 
   it('negative -> input Infinity', () => {
     expect(toISODateString(Infinity)).toBe(null);
+  });
+});
+
+describe('toDateLongString', () => {
+  /**
+   * Positive testing
+   */
+  it('positive -> input 0', () => {
+    expect(toDateLongString(0)).toBe('1 января 1970 г.');
+  });
+
+  it('positive -> input negative number', () => {
+    expect(toDateLongString(NUMBER_NEGATIVE)).toBe('8 июля 1870 г.');
+  });
+
+  it('positive -> input positive number', () => {
+    expect(toDateLongString(NUMBER_POSITIVE)).toBe('3 мая 2000 г.');
+  });
+
+  /**
+   * Negative testing
+   */
+  it('negative -> input NaN', () => {
+    expect(toDateLongString(NaN)).toBe(null);
+  });
+
+  it('negative -> input Infinity', () => {
+    expect(toDateLongString(Infinity)).toBe(null);
   });
 });
