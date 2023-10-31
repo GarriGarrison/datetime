@@ -26,6 +26,7 @@
     "no-console": "warn",
     "no-debugger": "warn",
     "max-len": ["warn", { "code": 120 }],
+    "@typescript-eslint/explicit-function-return-type": "error",
 
     "prettier/prettier": [
       "error",
