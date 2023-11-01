@@ -1,10 +1,11 @@
 import { describe, expect, it } from 'vitest';
-import { toDateString, toISODateString, toDateLongString, toISOString, toDateTimeString } from '../src';
+import { toDateString, toISODateString, toDateLongString, toISOString, toDateTimeString, toTimeString } from '../src';
 
 const TIMEZONE = new Date().getTimezoneOffset() * 60 * 1000;
 
 const NUMBER_POSITIVE = 957312000000 + TIMEZONE;
 const NUMBER_NEGATIVE = -3139344000000 - TIMEZONE;
+const NUMBER_TIME = 946740887000 + TIMEZONE;
 
 describe('toDateString', () => {
   /**
@@ -171,6 +172,46 @@ describe('toDateTimeString', () => {
       expect(toDateTimeString(NUMBER_POSITIVE)).toBe('03.05.2000 01:00:00');
     } else {
       expect(toDateTimeString(NUMBER_POSITIVE)).toBe('03.05.2000 24:00:00');
+    }
+  });
+
+  /**
+   * Negative testing
+   */
+  it('negative -> input NaN', () => {
+    expect(toDateTimeString(NaN)).toBe(null);
+  });
+
+  it('negative -> input Infinity', () => {
+    expect(toDateTimeString(Infinity)).toBe(null);
+  });
+});
+
+describe('toTimeString', () => {
+  /**
+   * Positive testing
+   */
+  it('positive -> input 0', () => {
+    if (TIMEZONE) {
+      expect(toTimeString(0)).toBe('03:00:00');
+    } else {
+      expect(toTimeString(0)).toBe('24:00:00');
+    }
+  });
+
+  it('positive -> input 0, withSeconds = false', () => {
+    if (TIMEZONE) {
+      expect(toTimeString(0, false)).toBe('03:00');
+    } else {
+      expect(toTimeString(0, false)).toBe('24:00');
+    }
+  });
+
+  it('positive -> input hh:mm:ss', () => {
+    if (TIMEZONE) {
+      expect(toTimeString(NUMBER_TIME)).toBe('15:34:47');
+    } else {
+      expect(toTimeString(NUMBER_TIME)).toBe('15:34:47');
     }
   });
 

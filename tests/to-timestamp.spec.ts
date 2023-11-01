@@ -26,7 +26,7 @@ describe('toTimestamp', () => {
     const day = new Date().getDate();
     const now = new Date(`${year}-${month}-${day}`).getTime();
 
-    expect(toTimestamp(TEST_TIME)).toBe(now + TIMEZONE + TEST_TIME_TS);
+    expect(toTimestamp(TEST_TIME)).toBe(now + TEST_TIME_TS);
   });
 
   it('positive format DateTime YYYY-MM-DD hh:mm', () => {
