@@ -219,10 +219,10 @@ describe('toTimeString', () => {
    * Negative testing
    */
   it('negative -> input NaN', () => {
-    expect(toDateTimeString(NaN)).toBe(null);
+    expect(toTimeString(NaN)).toBe(null);
   });
 
   it('negative -> input Infinity', () => {
-    expect(toDateTimeString(Infinity)).toBe(null);
+    expect(toTimeString(Infinity)).toBe(null);
   });
 });
