@@ -5,10 +5,11 @@ import dts from 'vite-plugin-dts';
 // https://vitejs.dev/guide/build.html#library-mode
 export default defineConfig({
   build: {
+    target: 'esnext',
     lib: {
       entry: resolve(__dirname, 'src/index.ts'),
-      name: 'my-lib',
-      fileName: 'my-lib',
+      name: 'datetime',
+      fileName: 'datetime',
     },
   },
   plugins: [dts()],
