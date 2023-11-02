@@ -4,8 +4,8 @@ import { toTimestamp } from '../src';
 const TEST_TIME = '09:04';
 const TEST_TIME_TS = 9 * 3600 * 1000 + 4 * 60 * 1000;
 const TIMEZONE = new Date().getTimezoneOffset() * 60 * 1000;
-const TEST_DATE_RU = '01.01.2000';
-const TEST_DATE_US = '2000-01-01';
+const TEST_DATE_RU = '15.11.2000';
+const TEST_DATE_US = '2000-11-15';
 const TEST_DATE_TS = new Date(`${TEST_DATE_US}`).getTime();
 
 describe('toTimestamp', () => {
