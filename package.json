@@ -1,7 +1,7 @@
 {
   "name": "@garrigarrison/datetime",
   "private": false,
-  "version": "1.0.6",
+  "version": "1.0.8",
   "description": "converter DateTime into timestamp and revert",
   "type": "module",
   "license": "MIT",
